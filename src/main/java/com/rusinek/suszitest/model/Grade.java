@@ -9,12 +9,21 @@ public class Grade {
         this.grade = grade;
     }
 
+    public Grade(String grade, Subject subject) {
+        this.grade = grade;
+        this.subject = subject;
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(name = "grade")
     private String grade;
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "subject")
+    private Subject subject;
 
     public Long getId() {
         return id;
