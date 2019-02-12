@@ -10,9 +10,9 @@ public class Person implements Serializable {
     public Person() {
     }
 
-    public Person(Integer nrPesel, LocalDate localDate, String firstName, String lastName) {
+    public Person(Integer nrPesel, LocalDate dateOfBirth, String firstName, String lastName) {
         this.nrPesel = nrPesel;
-        this.localDate = localDate;
+        this.dateOfBirth = dateOfBirth;
         this.firstName = firstName;
         this.lastName = lastName;
     }
@@ -23,7 +23,7 @@ public class Person implements Serializable {
 
     private Integer nrPesel;
 
-    private LocalDate localDate;
+    private LocalDate dateOfBirth;
 
     private String firstName;
 
@@ -38,11 +38,11 @@ public class Person implements Serializable {
     }
 
     public LocalDate getLocalDate() {
-        return localDate;
+        return dateOfBirth;
     }
 
     public void setLocalDate(LocalDate localDate) {
-        this.localDate = localDate;
+        this.dateOfBirth = localDate;
     }
 
     public Long getId() {
