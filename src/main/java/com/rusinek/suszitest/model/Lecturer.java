@@ -2,6 +2,7 @@ package com.rusinek.suszitest.model;
 
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Set;
 
@@ -11,8 +12,10 @@ public class Lecturer extends Person {
 
     public Lecturer() { }
 
-    public Lecturer(String firstName, String lastName, Title academicTitle, Set<Student> students) {
-        super(firstName, lastName);
+    public Lecturer(Integer nrPesel, LocalDate localDate, String firstName,
+                    String lastName, List<Subject> listOfSubjects, Title academicTitle, Set<Student> students) {
+        super(nrPesel, localDate, firstName, lastName);
+        this.listOfSubjects = listOfSubjects;
         this.academicTitle = academicTitle;
         this.students = students;
     }

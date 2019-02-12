@@ -13,13 +13,12 @@ public class Student extends Person{
     public Student() {
     }
 
-    public Student(String firstName, String lastName, List<Grade> listOfGrades,
-                   Map<TypeOfClasses, Subject> studentClasses, LocalDate dateOfBirth, Integer nrPesel) {
-        super(firstName, lastName);
+    public Student(Integer nrPesel, LocalDate localDate, String firstName, String lastName,
+                   List<Grade> listOfGrades, Map<TypeOfClasses, Subject> studentClasses, LocalDate dateOfBirth) {
+        super(nrPesel, localDate, firstName, lastName);
         this.listOfGrades = listOfGrades;
         this.studentClasses = studentClasses;
         this.dateOfBirth = dateOfBirth;
-        this.nrPesel = nrPesel;
     }
 
     @Column(name = "list_of_grades")
@@ -37,23 +36,12 @@ public class Student extends Person{
     @Column(name = "date_of_birth")
     private LocalDate dateOfBirth;
 
-    @Column(name = "nr_pesel")
-    private Integer nrPesel;
-
     public LocalDate getDateOfBirth() {
         return dateOfBirth;
     }
 
     public void setDateOfBirth(LocalDate dateOfBirth) {
         this.dateOfBirth = dateOfBirth;
-    }
-
-    public Integer getNrPesel() {
-        return nrPesel;
-    }
-
-    public void setNrPesel(Integer nrPesel) {
-        this.nrPesel = nrPesel;
     }
 
 }
