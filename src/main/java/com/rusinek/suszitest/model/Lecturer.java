@@ -19,6 +19,7 @@ public class Lecturer extends Person {
 
     @Column(name = "list_of_subjects")
     @ElementCollection(targetClass = Subject.class)
+    @OneToMany
     private List<Subject> listOfSubjects;
 
     @Column(name = "academic_title")
