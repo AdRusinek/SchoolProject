@@ -18,7 +18,7 @@ public class Student extends Person{
         this.listOfGrades = listOfGrades;
     }
 
-    @Column(name = "list_of_grades")
+
     @ElementCollection(targetClass = Grade.class)
     @OneToMany(cascade = CascadeType.ALL)
     private List<Grade> listOfGrades;

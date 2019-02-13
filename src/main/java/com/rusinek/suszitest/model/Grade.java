@@ -18,12 +18,12 @@ public class Grade {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "subject_id")
+    private Subject subject;
+
     @Column(name = "grade")
     private String grade;
-
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "subject")
-    private Subject subject;
 
     public Long getId() {
         return id;

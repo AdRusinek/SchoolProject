@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>WSZiB Lecteurers</title>
+</head>
+<body>
+<h1>WSZiB Lecturers</h1>
+<table>
+    <tr>
+        <th>ID</th>
+        <th>Imie</th>
+        <th>Nazwisko</th>
+    </tr>
+    <tr th:each="lecteurer : ${lecteurers}">
+        <td th:text="${lecteurer.id}">123</td>
+        <td th:text="${lecteurer.firstName}">123</td>
+        <td th:text="${lecteurer.lastName}">123</td>
+    </tr>
+</table>
+</body>
+</html>
