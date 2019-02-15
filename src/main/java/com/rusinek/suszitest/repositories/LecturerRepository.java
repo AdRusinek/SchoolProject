@@ -6,5 +6,5 @@ import java.util.Optional;
 
 public interface LecturerRepository extends CrudRepository<Lecturer,Long> {
 
-    Optional<Lecturer> findByNrPesel(Integer nrPesel);
+    Optional<Lecturer> findByNrPesel(Integer pesel);
 }
