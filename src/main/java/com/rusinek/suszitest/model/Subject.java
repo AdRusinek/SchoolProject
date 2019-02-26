@@ -1,23 +1,20 @@
 package com.rusinek.suszitest.model;
 
+import com.rusinek.suszitest.enums.TypeOfClasses;
+
 import javax.persistence.*;
 
 @Entity
 public class Subject {
 
-    public Subject() { }
-
-    public Subject(String subjectName, TypeOfClasses typeOfClass) {
-        this.subjectName = subjectName;
-        this.typeOfClass = typeOfClass;
-    }
-
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @Column(name = "subject_name")
     private String subjectName;
+
+    @ManyToOne
+    private Lecturer lecturer;
 
     @Enumerated(value = EnumType.STRING)
     private TypeOfClasses typeOfClass;
@@ -44,5 +41,13 @@ public class Subject {
 
     public void setTypeOfClass(TypeOfClasses  typeOfClass) {
         this.typeOfClass = typeOfClass;
+    }
+
+    public Lecturer getLecturer() {
+        return lecturer;
+    }
+
+    public void setLecturer(Lecturer lecturer) {
+        this.lecturer = lecturer;
     }
 }

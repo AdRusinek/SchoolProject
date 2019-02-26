@@ -1,24 +1,17 @@
 package com.rusinek.suszitest.model;
 
+import lombok.EqualsAndHashCode;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDate;
 
 @MappedSuperclass
+@EqualsAndHashCode
 public class Person implements Serializable {
 
-    public Person() {
-    }
-
-    public Person(Integer nrPesel, LocalDate dateOfBirth, String firstName, String lastName) {
-        this.nrPesel = nrPesel;
-        this.dateOfBirth = dateOfBirth;
-        this.firstName = firstName;
-        this.lastName = lastName;
-    }
-
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
     private Integer nrPesel;
@@ -29,6 +22,8 @@ public class Person implements Serializable {
 
     private String lastName;
 
+
+
     public Integer getNrPesel() {
         return nrPesel;
     }
@@ -37,12 +32,12 @@ public class Person implements Serializable {
         this.nrPesel = nrPesel;
     }
 
-    public LocalDate getLocalDate() {
+    public LocalDate getDateOfBirth() {
         return dateOfBirth;
     }
 
-    public void setLocalDate(LocalDate localDate) {
-        this.dateOfBirth = localDate;
+    public void setDateOfBirth(LocalDate dateOfBirth) {
+        this.dateOfBirth = dateOfBirth;
     }
 
     public Long getId() {

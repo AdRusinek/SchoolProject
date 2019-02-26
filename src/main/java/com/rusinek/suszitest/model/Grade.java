@@ -9,20 +9,10 @@ public class Grade {
         this.grade = grade;
     }
 
-    public Grade(String grade, Subject subject) {
-        this.grade = grade;
-        this.subject = subject;
-    }
-
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "subject_id")
-    private Subject subject;
-
-    @Column(name = "grade")
     private String grade;
 
     public Long getId() {
@@ -40,4 +30,6 @@ public class Grade {
     public void setGrade(String grade) {
         this.grade = grade;
     }
+
+
 }

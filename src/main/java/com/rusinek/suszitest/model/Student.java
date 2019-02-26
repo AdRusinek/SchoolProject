@@ -1,35 +1,25 @@
 package com.rusinek.suszitest.model;
 
 
+import lombok.EqualsAndHashCode;
+
 import javax.persistence.*;
-import java.time.LocalDate;
+import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 @Entity
-@Table(name = "students")
 public class Student extends Person{
 
-    public Student() {
-    }
 
-    public Student(Integer nrPesel, LocalDate localDate, String firstName, String lastName,
-                   List<Grade> listOfGrades) {
-        super(nrPesel, localDate, firstName, lastName);
-        this.listOfGrades = listOfGrades;
-    }
-
-
-    @ElementCollection(targetClass = Grade.class)
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Grade> listOfGrades;
 
-//    @ElementCollection
-//    @JoinTable(name = "student_classes",joinColumns = @JoinColumn(name = "id"))
-//    @MapKeyEnumerated(EnumType.STRING)
-//    @MapKeyColumn(name = "type_of_classes")
-//    @Column(name = "subject")
-//    private Map<TypeOfClasses,Subject> studentClasses;
-
+    @ManyToMany(cascade = {CascadeType.MERGE, CascadeType.PERSIST})
+    @JoinTable
+    private Set<Lecturer> lecturers = new HashSet<>();
 
     public List<Grade> getListOfGrades() {
         return listOfGrades;
@@ -37,5 +27,19 @@ public class Student extends Person{
 
     public void setListOfGrades(List<Grade> listOfGrades) {
         this.listOfGrades = listOfGrades;
+    }
+
+    public Set<Lecturer> getLecturers() {
+        return lecturers;
+    }
+
+    public void setLecturers(Set<Lecturer> lecturers) {
+        this.lecturers = lecturers;
+    }
+
+
+
+    public void removeGrade(Grade grade) {
+        listOfGrades.remove(grade);
     }
 }

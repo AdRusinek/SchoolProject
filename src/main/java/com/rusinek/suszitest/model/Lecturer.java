@@ -1,39 +1,26 @@
 package com.rusinek.suszitest.model;
 
 
+import com.rusinek.suszitest.enums.Title;
+
 import javax.persistence.*;
-import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
 @Entity
-@Table(name = "lecturers")
 public class Lecturer extends Person {
 
-    public Lecturer() { }
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Subject> subjects = new ArrayList<>();
 
-    public Lecturer(Integer nrPesel, LocalDate localDate, String firstName,
-                    String lastName, List<Subject> listOfSubjects, Title academicTitle, Set<Student> students) {
-        super(nrPesel, localDate, firstName, lastName);
-        this.listOfSubjects = listOfSubjects;
-        this.academicTitle = academicTitle;
-        this.students = students;
-    }
-
-    @Column(name = "list_of_subjects")
-    @ElementCollection(targetClass = Subject.class)
-    @OneToMany(cascade = CascadeType.ALL)
-    private List<Subject> listOfSubjects;
-
-    @Column(name = "academic_title")
     @Enumerated(value = EnumType.STRING)
     private Title academicTitle;
 
-    @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(name = "students_lecturers",joinColumns = @JoinColumn(name = "lecturer_id"),
-               inverseJoinColumns = @JoinColumn(name = "student_id"))
-    private Set<Student> students;
-
+    @ManyToMany(fetch = FetchType.EAGER, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
+    @JoinTable
+    private Set<Student> students = new HashSet<>();
 
     public Title getAcademicTitle() {
         return academicTitle;
@@ -49,5 +36,33 @@ public class Lecturer extends Person {
 
     public void setStudents(Set<Student> students) {
         this.students = students;
+    }
+
+    public List<Subject> getSubjects() {
+        return subjects;
+    }
+
+    public void setSubjects(List<Subject> subjects) {
+        this.subjects = subjects;
+    }
+
+    public void addStudent(Student student) {
+        students.add(student);
+        student.getLecturers().add(this);
+    }
+
+    public void removeStudent(Student student) {
+        students.remove(student);
+        student.getLecturers().remove(this);
+    }
+
+    public void addSubject(Subject subject) {
+        subjects.add(subject);
+        subject.setLecturer(this);
+    }
+
+    public void removeSubject(Subject subject) {
+        subjects.remove(subject);
+        subject.setLecturer(null);
     }
 }
