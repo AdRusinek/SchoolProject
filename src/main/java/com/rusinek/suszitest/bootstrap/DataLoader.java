@@ -16,7 +16,8 @@ import java.time.LocalDate;
 import java.util.*;
 
 import static com.rusinek.suszitest.enums.Title.DOCTOR;
-import static com.rusinek.suszitest.enums.TypeOfClasses.LECTURES;
+import static com.rusinek.suszitest.enums.Title.MASTER_OF_ARTS;
+import static com.rusinek.suszitest.enums.TypeOfClasses.*;
 
 @Component
 public class DataLoader implements ApplicationListener<ContextRefreshedEvent> {
@@ -39,6 +40,7 @@ public class DataLoader implements ApplicationListener<ContextRefreshedEvent> {
     }
 
     private void loadData() {
+
         Lecturer valenta = new Lecturer();
         valenta.setFirstName("Marek");
         valenta.setLastName("Valenta");
@@ -69,5 +71,42 @@ public class DataLoader implements ApplicationListener<ContextRefreshedEvent> {
         valenta.addStudent(rusinekAdrian);
 
         lecturerRepository.save(valenta);
+
+
+        Lecturer jurczyk = new Lecturer();
+        jurczyk.setFirstName("Tomasz");
+        jurczyk.setLastName("Jurczyk");
+        jurczyk.setDateOfBirth(LocalDate.of(1982,4,2));
+        jurczyk.setNrPesel(32452334);
+        jurczyk.setAcademicTitle(MASTER_OF_ARTS);
+
+        Subject podstawyInformatykiCwiczenia = new Subject();
+        podstawyInformatykiCwiczenia.setSubjectName("Podstawy Informatyki");
+        podstawyInformatykiCwiczenia.setTypeOfClass(DISCUSSIONS);
+
+        Subject podstawyInformatykiLaby = new Subject();
+        podstawyInformatykiLaby.setSubjectName("Podstawy Informatyki");
+        podstawyInformatykiLaby.setTypeOfClass(LABS);
+
+        jurczyk.addSubject(podstawyInformatykiCwiczenia);
+        jurczyk.addSubject(podstawyInformatykiLaby);
+
+        Student dawidJurecki = new Student();
+        dawidJurecki.setFirstName("Dawid");
+        dawidJurecki.setLastName("Jurecki");
+        dawidJurecki.setDateOfBirth(LocalDate.of(1997,2,12));
+        dawidJurecki.setNrPesel(96343642);
+
+        Grade grade3 = new Grade("3");
+        Grade grade4 = new Grade("3");
+        List<Grade> listOfGrades1 = new ArrayList<>();
+        listOfGrades1.add(grade3);
+        listOfGrades1.add(grade4);
+
+        dawidJurecki.setListOfGrades(listOfGrades1);
+
+        jurczyk.addStudent(dawidJurecki);
+
+        lecturerRepository.save(jurczyk);
     }
 }

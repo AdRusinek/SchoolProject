@@ -38,7 +38,6 @@ public class Student extends Person{
     }
 
 
-
     public void removeGrade(Grade grade) {
         listOfGrades.remove(grade);
     }
