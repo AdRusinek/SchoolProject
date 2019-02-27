@@ -18,8 +18,7 @@ public class Lecturer extends Person {
     @Enumerated(value = EnumType.STRING)
     private Title academicTitle;
 
-    @ManyToMany(fetch = FetchType.EAGER, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
-    @JoinTable
+    @ManyToMany(cascade = {CascadeType.MERGE, CascadeType.PERSIST}, mappedBy = "lecturers")
     private Set<Student> students = new HashSet<>();
 
     public Title getAcademicTitle() {

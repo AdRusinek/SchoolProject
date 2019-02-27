@@ -17,8 +17,11 @@ public class Student extends Person{
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Grade> listOfGrades;
 
-    @ManyToMany(cascade = {CascadeType.MERGE, CascadeType.PERSIST})
-    @JoinTable
+    @ManyToMany(cascade = {CascadeType.PERSIST})
+    @JoinTable(name = "Student_Lecturer",
+                    joinColumns = {
+                    @JoinColumn( name = "student_id", referencedColumnName = "id")
+                    }, inverseJoinColumns = { @JoinColumn(name = "lecturer_id", referencedColumnName = "id")})
     private Set<Lecturer> lecturers = new HashSet<>();
 
     public List<Grade> getListOfGrades() {

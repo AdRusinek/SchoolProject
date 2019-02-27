@@ -1,8 +1,11 @@
 package com.rusinek.suszitest.model;
 
+import lombok.NoArgsConstructor;
+
 import javax.persistence.*;
 
 @Entity
+@NoArgsConstructor
 public class Grade {
 
     public Grade(String grade) {
@@ -32,4 +35,8 @@ public class Grade {
     }
 
 
+    @Override
+    public String toString() {
+        return grade;
+    }
 }
