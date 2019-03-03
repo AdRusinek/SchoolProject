@@ -1,32 +1,34 @@
-package com.rusinek.suszitest.model;
+package com.rusinek.suszitest.commands;
 
-import lombok.EqualsAndHashCode;
+import com.rusinek.suszitest.model.Lecturer;
 import org.springframework.format.annotation.DateTimeFormat;
 
-import javax.persistence.*;
-import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.HashSet;
+import java.util.Set;
 
-@MappedSuperclass
-@EqualsAndHashCode
-public class Person implements Serializable {
+public class StudentCommand {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    public StudentCommand() {
+    }
+
     private Long id;
 
     private Integer nrPesel;
 
-
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     private LocalDate dateOfBirth;
 
     private String firstName;
 
     private String lastName;
 
-    @Override
-    public String toString() {
-        return firstName + " " + lastName;
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public Integer getNrPesel() {
@@ -45,14 +47,6 @@ public class Person implements Serializable {
         this.dateOfBirth = dateOfBirth;
     }
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
     public String getFirstName() {
         return firstName;
     }
@@ -68,4 +62,5 @@ public class Person implements Serializable {
     public void setLastName(String lastName) {
         this.lastName = lastName;
     }
+
 }

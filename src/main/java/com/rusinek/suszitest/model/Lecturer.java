@@ -45,6 +45,8 @@ public class Lecturer extends Person {
         this.subjects = subjects;
     }
 
+
+
     public void addStudent(Student student) {
         students.add(student);
         student.getLecturers().add(this);

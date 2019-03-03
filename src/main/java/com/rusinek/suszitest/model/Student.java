@@ -1,14 +1,10 @@
 package com.rusinek.suszitest.model;
 
 
-import lombok.EqualsAndHashCode;
-
 import javax.persistence.*;
-import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import java.util.stream.Collectors;
 
 @Entity
 public class Student extends Person{
@@ -17,7 +13,7 @@ public class Student extends Person{
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Grade> listOfGrades;
 
-    @ManyToMany(cascade = {CascadeType.PERSIST})
+    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinTable(name = "Student_Lecturer",
                     joinColumns = {
                     @JoinColumn( name = "student_id", referencedColumnName = "id")

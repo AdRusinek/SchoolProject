@@ -106,6 +106,7 @@ public class DataLoader implements ApplicationListener<ContextRefreshedEvent> {
         dawidJurecki.setListOfGrades(listOfGrades1);
 
         jurczyk.addStudent(dawidJurecki);
+        jurczyk.addStudent(rusinekAdrian);
 
         lecturerRepository.save(jurczyk);
     }
