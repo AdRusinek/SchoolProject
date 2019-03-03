@@ -34,7 +34,6 @@ public class StudentServiceImpl implements StudentService {
     @Override
     public Set<Student> getAllStudents() {
         Set<Student> students = new HashSet<>();
-
         studentRepository.findAll().forEach(students::add);
 
         return students;

@@ -51,7 +51,7 @@ public class StudentController {
 
 
     //@RequestMapping(name = "student", method = RequestMethod.POST) starszy sposob
-    @PostMapping("/student/new")
+    @PostMapping("/new")
     public String saveOrUpdate(@ModelAttribute("student") StudentCommand command) {
         StudentCommand savedCommand = studentService.saveStudentCommand(command);
 

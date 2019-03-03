@@ -34,7 +34,6 @@ public class Grade {
         this.grade = grade;
     }
 
-
     @Override
     public String toString() {
         return grade;

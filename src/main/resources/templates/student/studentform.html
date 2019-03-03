@@ -15,7 +15,7 @@
     <div class="row" style="margin-left: 500px;">
         <div class="col-md-10 col-md-offset-3 ">
             <div class="panel panel-primary">
-            <form  th:object="${student}" th:action="@{student/new}"  method="post">
+            <form  th:object="${student}" th:action="@{new}"  method="post">
                 <input type="hidden" th:field="*{id}"/>
                 <div class="pannel-group">
                     <div class="panel panel-primary">
@@ -53,6 +53,7 @@
                 </div>
             </form>
         </div>
+    </div>
     </div>
 </div>
 </body>
