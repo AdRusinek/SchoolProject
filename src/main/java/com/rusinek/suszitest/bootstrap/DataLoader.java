@@ -47,6 +47,7 @@ public class DataLoader implements ApplicationListener<ContextRefreshedEvent> {
         valenta.setDateOfBirth(LocalDate.of(1998,4,2));
         valenta.setNrPesel(8987678);
         valenta.setAcademicTitle(DOCTOR);
+        valenta.setEmail("valentaMarek@gmail.com");
 
         Subject bazyWyklad = new Subject();
         bazyWyklad.setSubjectName("Bazy danych");
@@ -59,6 +60,7 @@ public class DataLoader implements ApplicationListener<ContextRefreshedEvent> {
         rusinekAdrian.setLastName("Rusinek");
         rusinekAdrian.setDateOfBirth(LocalDate.of(1998,7,12));
         rusinekAdrian.setNrPesel(867545364);
+        rusinekAdrian.setEmail("rusinekAdrian19@gmail.com");
 
         Grade grade = new Grade("5");
         Grade grade1 = new Grade("4");
@@ -79,6 +81,7 @@ public class DataLoader implements ApplicationListener<ContextRefreshedEvent> {
         jurczyk.setDateOfBirth(LocalDate.of(1982,4,2));
         jurczyk.setNrPesel(32452334);
         jurczyk.setAcademicTitle(MASTER_OF_ARTS);
+        jurczyk.setEmail("jurczykTomasz@gmail.com");
 
         Subject podstawyInformatykiCwiczenia = new Subject();
         podstawyInformatykiCwiczenia.setSubjectName("Podstawy Informatyki");
@@ -96,6 +99,7 @@ public class DataLoader implements ApplicationListener<ContextRefreshedEvent> {
         dawidJurecki.setLastName("Jurecki");
         dawidJurecki.setDateOfBirth(LocalDate.of(1997,2,12));
         dawidJurecki.setNrPesel(96343642);
+        dawidJurecki.setEmail("jureckiDawid@gmail.com");
 
         Grade grade3 = new Grade("3");
         Grade grade4 = new Grade("3");

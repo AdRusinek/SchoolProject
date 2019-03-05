@@ -1,9 +1,8 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:text-align="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>WSZiB Lecteurers</title>
-
+    <title>Znajdź wykładowce</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
@@ -20,40 +19,36 @@
             background-repeat: no-repeat;
             background-attachment: fixed;
         }
-
-        #jumbo {
-            border-radius:  19px;
-            color: white;
-            margin: 40px;
-            background: rgba(0,0,0,0.8);
-
-        }
     </style>
 
 </head>
 <body>
-<div class="container">
-    <h1 class="text-center" style="margin-top: 50px;" >Wyższa Szkoła Zarządzania i Bankowości</h1>
 
+<h2 style="margin-left: 40%">Znajdź wykładowce</h2>
 
-    <div class="jumbotron" id="jumbo" >
-        <h1 class="display-4">Witamy</h1>
-        <p class="lead">Uczelnia strona główna</p>
-        <hr class="my-4">
-        <p>Testowanie</p>
-        <a class="btn btn-light btn-lg" href="lecturer/list" role="button ">Pokaż wykładowców</a>
-        <a class="btn btn-light btn-lg" href="student/list" role="button">Pokaż studentów</a>
-        <div>
-        <a class="btn btn-outline-success btn-lg" style="margin-top: 20px; " href="/lecturer/find" role="button">Wyszukaj wykładowce</a>
+<form th:object="${lecturer}" th:action="@{/lecturer}" method="get"
+      class="form-horizontal" id="search-lecturer-form">
+    <div class="form-group">
+        <div class="control-group" id="lastNameGroup">
+            <label class="col-sm-2 control-label"></label>
+            <div class="col-sm-10">
+                <input style="margin-left: 6rem " class="form-control text-center" placeholder="Nazwisko wykładowcy"
+                       th:field="*{lastName}" size="30"
+                       maxlength="80" /> <span class="help-inline"><div
+                    th:if="${#fields.hasAnyErrors()}">
+              <p th:each="err : ${#fields.allErrors()}" th:text="${err}">Error</p>
+            </div></span>
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+            <button style="margin-left: 55%;" type="submit" class="btn btn-outline-primary btn-lg">Znajdź</button>
         </div>
     </div>
 
-    <!--<ul>-->
-        <!--<li><a href="lecturer/list">Lecturers</a></li>-->
-        <!--<li><a href="student/list">Students</a></li>-->
-    <!--</ul>-->
+</form>
 
-</div>
-
+<br />
 </body>
 </html>

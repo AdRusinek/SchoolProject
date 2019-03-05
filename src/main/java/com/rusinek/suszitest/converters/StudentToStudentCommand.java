@@ -24,6 +24,7 @@ public class StudentToStudentCommand implements Converter<Student, StudentComman
         command.setLastName(source.getLastName());
         command.setDateOfBirth(source.getDateOfBirth());
         command.setNrPesel(source.getNrPesel());
+        command.setEmail(source.getEmail());
 
         return command;
     }

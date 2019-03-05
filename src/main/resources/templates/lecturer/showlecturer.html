@@ -21,9 +21,9 @@
         }
         #mainContainer {
             color: #f4f6ff;
-            width: 90%;
+            /*width: 98%;*/
             background: rgba(0,0,0,0.2);
-            border-radius:  19px;
+            border-radius:  30px;
         }
 
     </style>
@@ -36,29 +36,30 @@
             <div class="panel panel-primary">
 
                 <div class="panel-heading">
-                    <h1 class="panel-title text-center">WSZiB Studenci</h1>
+                    <h1 class="panel-title ">WSZiB Wykładowcy</h1>
                 </div>
                 <div class="panel-body">
-                    <div class="table-responsive" th:if="${not #lists.isEmpty(studentList)}">
+                    <div class="table-responsive" th:if="${not #lists.isEmpty(retrivedLecturer)}">
                         <table class="table table-hover ">
                             <thead class="thead-inverse">
                             <tr>
                                 <th>ID</th>
                                 <th>Imię i Nazwisko</th>
-                                <th>Oceny</th>
-                                <th>Usuń studenta</th>
-                                <th><a class="btn btn-dark" th:href="${'/student/new'}">Dodaj nowego studenta</a></th>
+                                <th>Data urodzin</th>
+                                <th>Przedmioty</th>
+                                <th>Stopień naukowy</th>
+                                <th>Adres email</th>
+                                <th>Numer pesel</th>
                             </tr>
                             </thead>
-                            <tr th:each="student : ${studentList}">
-                                <td th:text="${student.id}">334</td>
-                                <td>
-                                    <a style="color: wheat" href="#" th:href="@{${student.id} + '/show'}"
-                                       th:text="${student.firstName} + ' ' + ${student.lastName}"></a>
-                                </td>
-                                <td th:text="${student.listOfGrades}"></td>
-                                <td th:text="${student.email}"></td>
-                                <td><a class="btn btn-outline-danger" style="margin-left: 35px" th:href="${'/student/' + student.id + '/delete'}">Usuń studenta</a></td>
+                            <tr th:each="lecturer : ${retrivedLecturer}">
+                                <td th:text="${lecturer.id}">334</td>
+                                <td th:text="${lecturer.firstName} + ' ' + ${lecturer.lastName}"></td>
+                                <td th:text="${lecturer.dateOfBirth}"></td>
+                                <td th:text="${lecturer.subjects}"></td>
+                                <td th:text="${lecturer.academicTitle}"></td>
+                                <td th:text="${lecturer.email}"></td>
+                                <td th:text="${lecturer.nrPesel}"></td>
                             </tr>
                         </table>
                     </div>

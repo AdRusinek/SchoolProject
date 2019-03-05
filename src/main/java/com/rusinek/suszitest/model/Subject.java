@@ -19,6 +19,11 @@ public class Subject {
     @Enumerated(value = EnumType.STRING)
     private TypeOfClasses typeOfClass;
 
+    @Override
+    public String toString() {
+        return subjectName + " | " + typeOfClass;
+    }
+
     public Long getId() {
         return id;
     }

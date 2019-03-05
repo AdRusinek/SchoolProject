@@ -19,6 +19,8 @@ public class StudentCommand {
     @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
     private LocalDate dateOfBirth;
 
+    private String email;
+
     private String firstName;
 
     private String lastName;
@@ -63,4 +65,11 @@ public class StudentCommand {
         this.lastName = lastName;
     }
 
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
 }
