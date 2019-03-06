@@ -26,6 +26,12 @@ public class LecturerController {
         return "lecturer/lecturerlist";
     }
 
+    @RequestMapping("/lecturer/{id}/delete")
+    public String deleteLecturer(@PathVariable Long id ,Model model) {
+        lecturerService.deleteLecturerById(id);
+        return "redirect:/lecturer/list";
+    }
+
     @RequestMapping("/lecturer/show/{id}")
     public String showLecturer(@PathVariable Long id, Model model) {
         model.addAttribute("retrivedLecturer",lecturerService.findById(id));

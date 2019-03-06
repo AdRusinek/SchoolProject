@@ -59,6 +59,7 @@
                                 <td th:text="${student.listOfGrades}"></td>
                                 <td th:text="${student.email}"></td>
                                 <td><a class="btn btn-outline-danger" style="margin-left: 35px" th:href="${'/student/' + student.id + '/delete'}">Usuń studenta</a></td>
+                                <td><a class="btn btn-outline-primary" style="margin-left: 35px" th:href="${'/student/' + student.id + '/messages'}">Wiadomości</a></td>
                             </tr>
                         </table>
                     </div>

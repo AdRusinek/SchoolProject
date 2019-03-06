@@ -10,10 +10,11 @@ public enum  TypeOfClasses {
 
     private final String typeOfClasses;
 
-    private TypeOfClasses(String s) {
+    TypeOfClasses(String s) {
         typeOfClasses = s;
     }
 
+    @Override
     public String toString() {
         return this.typeOfClasses;
     }

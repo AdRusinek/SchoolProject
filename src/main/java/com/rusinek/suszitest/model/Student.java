@@ -2,6 +2,7 @@ package com.rusinek.suszitest.model;
 
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -14,14 +15,23 @@ public class Student extends Person{
     private List<Grade> listOfGrades;
 
     @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
-    @JoinTable(name = "Student_Lecturer",
-                    joinColumns = {
-                    @JoinColumn( name = "student_id", referencedColumnName = "id")
-                    }, inverseJoinColumns = { @JoinColumn(name = "lecturer_id", referencedColumnName = "id")})
+    @JoinTable
     private Set<Lecturer> lecturers = new HashSet<>();
+
+
+    @OneToMany(cascade = CascadeType.ALL)
+    private List<Message> listOfMessages = new ArrayList();
 
     public List<Grade> getListOfGrades() {
         return listOfGrades;
+    }
+
+    public List<Message> getListOfMessages() {
+        return listOfMessages;
+    }
+
+    public void setListOfMessages(List<Message> listOfMessages) {
+        this.listOfMessages = listOfMessages;
     }
 
     public void setListOfGrades(List<Grade> listOfGrades) {

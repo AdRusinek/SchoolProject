@@ -11,5 +11,7 @@ public interface LecturerService {
 
     Set<Lecturer> getLecturers();
 
+    void deleteLecturerById(Long id);
+
     List<Lecturer> findAllByLastNameLike(String lastName);
 }

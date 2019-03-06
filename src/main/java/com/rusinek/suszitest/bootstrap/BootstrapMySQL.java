@@ -1,14 +1,9 @@
 package com.rusinek.suszitest.bootstrap;
 
-import com.rusinek.suszitest.enums.Title;
-import com.rusinek.suszitest.enums.TypeOfClasses;
-import com.rusinek.suszitest.enums.TypeOfMessage;
 import com.rusinek.suszitest.model.*;
 import com.rusinek.suszitest.repositories.LecturerRepository;
-
 import com.rusinek.suszitest.repositories.MessageRepository;
-import com.rusinek.suszitest.repositories.StudentRepository;
-import com.rusinek.suszitest.repositories.SubjectRepository;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.annotation.Profile;
 import org.springframework.context.event.ContextRefreshedEvent;
@@ -16,39 +11,41 @@ import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 
 import static com.rusinek.suszitest.enums.Title.DOCTOR;
 import static com.rusinek.suszitest.enums.Title.MASTER_OF_ARTS;
 import static com.rusinek.suszitest.enums.TypeOfClasses.*;
 import static com.rusinek.suszitest.enums.TypeOfMessage.PRIORITY;
 
+@Slf4j
 @Component
-@Profile("default")
-public class DataLoader implements ApplicationListener<ContextRefreshedEvent> {
+@Profile({"dev","prod"})
+public class BootstrapMySQL implements ApplicationListener<ContextRefreshedEvent> {
 
     private final LecturerRepository lecturerRepository;
     private final MessageRepository messageRepository;
 
-    public DataLoader(LecturerRepository lecturerRepository, MessageRepository messageRepository) {
-        this.lecturerRepository = lecturerRepository;
-        this.messageRepository = messageRepository;
-    }
+    public BootstrapMySQL(LecturerRepository lecturerRepository, MessageRepository messageRepository) {
+            this.lecturerRepository = lecturerRepository;
+            this.messageRepository = messageRepository;
+            }
 
     @Override
     @Transactional
     public void onApplicationEvent(ContextRefreshedEvent contextRefreshedEvent) {
-        loadData();
-        loadMessages();
-    }
+            loadData();
+            loadMessages();
+            }
 
     private void loadMessages() {
-        Message message = new Message();
-        message.setMessage("Somethind ");
-        message.setTypeOfMessage(PRIORITY);
+            Message message = new Message();
+            message.setMessage("Somethind ");
+            message.setTypeOfMessage(PRIORITY);
 
-        messageRepository.save(message);
-    }
+            messageRepository.save(message);
+            }
 
     private void loadData() {
 
@@ -124,5 +121,6 @@ public class DataLoader implements ApplicationListener<ContextRefreshedEvent> {
         jurczyk.addStudent(rusinekAdrian);
 
         lecturerRepository.save(jurczyk);
-    }
-}
+        }
+        }
+

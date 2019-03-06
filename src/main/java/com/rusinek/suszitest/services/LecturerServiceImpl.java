@@ -45,4 +45,15 @@ public class LecturerServiceImpl implements LecturerService {
                 .filter(n -> n.getLastName().toLowerCase().contains(lastName.toLowerCase()))
                 .collect(Collectors.toList());
     }
+
+    @Override
+    public void deleteLecturerById(Long id) {
+          Optional<Lecturer> foundLecturer = lecturerRepository.findById(id);
+
+          if(!foundLecturer.isPresent()) {
+              log.debug("There is no lecturer with id: " + id);
+          } else {
+           lecturerRepository.deleteById(id);
+          }
+    }
 }

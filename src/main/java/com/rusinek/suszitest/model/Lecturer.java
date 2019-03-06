@@ -18,8 +18,19 @@ public class Lecturer extends Person {
     @Enumerated(value = EnumType.STRING)
     private Title academicTitle;
 
-    @ManyToMany(cascade = {CascadeType.MERGE, CascadeType.PERSIST}, mappedBy = "lecturers")
+    @ManyToMany(mappedBy = "lecturers", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     private Set<Student> students = new HashSet<>();
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "sender", orphanRemoval = true)
+    private List<Message> messages;
+
+    public List<Message> getMessages() {
+        return messages;
+    }
+
+    public void setMessages(List<Message> messages) {
+        this.messages = messages;
+    }
 
     public Title getAcademicTitle() {
         return academicTitle;

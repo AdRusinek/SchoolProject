@@ -58,6 +58,7 @@
                                 </td>
                                 <td th:text="${lecteurer.email}">email</td>
                                 <td th:text="${lecteurer.academicTitle}">Tasty Goodnees 3</td>
+                                <td><a class="btn btn-outline-danger" style="margin-left: 35px" th:href="${'/lecturer/' + lecteurer.id + '/delete'}">Usuń wykładowce</a></td>
                                 <!--<td><a href="#" th:href="@{'lecturer/show/' + ${lecteurer.id}}">View</a></td>-->
                             </tr>
                         </table>
